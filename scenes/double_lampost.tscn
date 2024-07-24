@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct1urdvxw5jei"]
+
+[ext_resource type="Texture2D" uid="uid://df1ml0p2dl4qg" path="res://assets/tilemap.png" id="1_kag8g"]
+
+[sub_resource type="Gradient" id="Gradient_moxu4"]
+offsets = PackedFloat32Array(0.461039, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87ldi"]
+gradient = SubResource("Gradient_moxu4")
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_2stjn"]
+offsets = PackedFloat32Array(0.487013, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d23jk"]
+gradient = SubResource("Gradient_2stjn")
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[node name="DoubleLampost" type="Sprite2D"]
+texture = ExtResource("1_kag8g")
+region_enabled = true
+region_rect = Rect2(52, 104, 15, 29)
+
+[node name="PointLight2D_right" type="PointLight2D" parent="."]
+position = Vector2(14, 1.74999)
+scale = Vector2(0.421875, 0.414063)
+color = Color(0.835294, 0.831373, 0, 0.996078)
+texture = SubResource("GradientTexture2D_87ldi")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-13, 1)
+scale = Vector2(0.375, 0.390625)
+color = Color(0.835294, 0.831373, 0, 0.960784)
+texture = SubResource("GradientTexture2D_d23jk")

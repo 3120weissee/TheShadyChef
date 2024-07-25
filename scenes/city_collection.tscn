@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://3owk0j7kfot3"]
+
+[ext_resource type="PackedScene" uid="uid://cto3m1yxoev5y" path="res://scenes/city.tscn" id="1_33nua"]
+[ext_resource type="PackedScene" uid="uid://b1pjni62xk1hf" path="res://scenes/main_character.tscn" id="2_6jpgw"]
+
+[node name="CityCollection" type="Node2D"]
+
+[node name="City" parent="." instance=ExtResource("1_33nua")]
+
+[node name="MainCharacter" parent="." instance=ExtResource("2_6jpgw")]
+position = Vector2(641, 452)
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+zoom = Vector2(2, 2)

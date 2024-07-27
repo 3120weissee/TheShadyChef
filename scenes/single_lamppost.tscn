@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp8r16q6wbgvv"]
+
+[ext_resource type="Texture2D" uid="uid://df1ml0p2dl4qg" path="res://assets/tilemap.png" id="1_mhfgx"]
+
+[sub_resource type="Gradient" id="Gradient_am3yn"]
+offsets = PackedFloat32Array(0.461039, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ljibn"]
+gradient = SubResource("Gradient_am3yn")
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[node name="SingleLamppost" type="Sprite2D"]
+position = Vector2(0, -2)
+texture = ExtResource("1_mhfgx")
+region_enabled = true
+region_rect = Rect2(35, 104, 14, 29)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-9, 2)
+scale = Vector2(0.421875, 0.406251)
+color = Color(0.835294, 0.831373, 0, 0.996078)
+texture = SubResource("GradientTexture2D_ljibn")

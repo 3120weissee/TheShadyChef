@@ -16,3 +16,6 @@ zoom = Vector2(2, 2)
 
 [node name="Dumpster" parent="." instance=ExtResource("3_juahx")]
 position = Vector2(627, 426)
+
+[connection signal="body_entered" from="Dumpster" to="MainCharacter" method="_on_dumpster_body_entered"]
+[connection signal="surrender_inventory" from="Dumpster" to="MainCharacter" method="_on_dumpster_surrender_inventory"]

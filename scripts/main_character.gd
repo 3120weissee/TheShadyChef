@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 100
+@export var player_inventory = []
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -23,3 +24,7 @@ func animate_character(x,y):
 		%CharacterAnimation.play('walk_up')
 	else:
 		%CharacterAnimation.stop()
+
+func _on_dumpster_surrender_inventory(dumpster_inventory):
+	player_inventory += dumpster_inventory
+	print(player_inventory)

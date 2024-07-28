@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://clkh70xo2unh4"]
 
-[ext_resource type="Script" path="res://scenes/dumpster.gd" id="1_8c8ce"]
 [ext_resource type="Texture2D" uid="uid://df1ml0p2dl4qg" path="res://assets/tilemap.png" id="1_18vno"]
+[ext_resource type="Script" path="res://scripts/dumpster.gd" id="1_hpr1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dsdkp"]
 size = Vector2(16, 8)
 
 [node name="Dumpster" type="Area2D"]
-script = ExtResource("1_8c8ce")
+script = ExtResource("1_hpr1g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_18vno")

@@ -13,6 +13,6 @@ func create_inventory():
 func _ready():
 	create_inventory()
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	emit_signal("surrender_inventory", inventory)
 	queue_free()

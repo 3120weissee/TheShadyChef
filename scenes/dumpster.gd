@@ -1,17 +1,18 @@
 extends Area2D
 
+signal surrender_inventory
+
+var inventory = []
+
+func create_inventory():
+	inventory.append("cockroach")
+	inventory.append("moldy_bread")
+	inventory.append("mystery_sauce")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# create_inventory()
-	pass # Replace with function body.
+	create_inventory()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-	
-	
-
-func _on_area_entered(_area):
-	print('HELLO NURSE!')
+func _on_body_entered(body):
+	emit_signal("surrender_inventory", inventory)
+	queue_free()

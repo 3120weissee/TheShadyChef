@@ -52,3 +52,4 @@ interact={
 2d_physics/layer_1="world"
 2d_physics/layer_2="main_character"
 2d_physics/layer_3="dumpsters"
+2d_physics/layer_4="city_limits"

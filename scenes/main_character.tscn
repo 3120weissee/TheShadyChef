@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dgdjbdtj3uy16" path="res://chef-spritesheet.png" id="2_6ubto"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnxgg"]
-radius = 5.0
-height = 14.0
+radius = 4.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_s3ne1"]
 resource_name = "walk_down"
@@ -86,6 +86,7 @@ _data = {
 [node name="MainCharacter" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_sd4bt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -53,3 +53,6 @@ interact={
 2d_physics/layer_2="main_character"
 2d_physics/layer_3="dumpsters"
 2d_physics/layer_4="city_limits"
+2d_physics/layer_5="ufos"
+2d_physics/layer_6="ufo_detection"
+2d_physics/layer_7="character_detection"

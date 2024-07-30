@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1pjni62xk1hf"]
+[gd_scene load_steps=11 format=3 uid="uid://b1pjni62xk1hf"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_sd4bt"]
 [ext_resource type="Texture2D" uid="uid://dgdjbdtj3uy16" path="res://chef-spritesheet.png" id="2_6ubto"]
+[ext_resource type="Texture2D" uid="uid://df1ml0p2dl4qg" path="res://assets/tilemap.png" id="3_t5rtp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnxgg"]
 radius = 4.0
@@ -14,7 +15,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +32,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +49,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +66,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,13 +84,17 @@ _data = {
 "walk_up": SubResource("Animation_h6f44")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pyhll"]
+radius = 4.0
+height = 15.0
+
 [node name="MainCharacter" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_sd4bt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CharacterSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_6ubto")
 hframes = 4
 vframes = 4
@@ -104,3 +109,31 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_3o6v2")
 }
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+
+[node name="DetectionShape" type="CollisionShape2D" parent="Detection"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_pyhll")
+
+[node name="DumpsterSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("3_t5rtp")
+region_enabled = true
+region_rect = Rect2(136, 204, 16, 9)
+
+[node name="DisguiseDuration" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="DisguiseCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
+[connection signal="timeout" from="DisguiseDuration" to="." method="_on_disguise_duration_timeout"]
+[connection signal="timeout" from="DisguiseCooldown" to="." method="_on_disguise_cooldown_timeout"]

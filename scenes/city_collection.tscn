@@ -1,16 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://3owk0j7kfot3"]
+[gd_scene load_steps=7 format=3 uid="uid://3owk0j7kfot3"]
 
+[ext_resource type="Script" path="res://scripts/city_collection.gd" id="1_1kxx5"]
 [ext_resource type="PackedScene" uid="uid://cto3m1yxoev5y" path="res://scenes/city.tscn" id="1_33nua"]
 [ext_resource type="PackedScene" uid="uid://b1pjni62xk1hf" path="res://scenes/main_character.tscn" id="2_6jpgw"]
-[ext_resource type="PackedScene" uid="uid://clkh70xo2unh4" path="res://scenes/dumpster.tscn" id="3_juahx"]
-[ext_resource type="PackedScene" uid="uid://cp8r16q6wbgvv" path="res://scenes/single_lamppost.tscn" id="4_s1pyb"]
+[ext_resource type="PackedScene" uid="uid://ddhnyxf8b5u4f" path="res://scenes/dumpster.tscn" id="3_juahx"]
+[ext_resource type="PackedScene" uid="uid://cvrpukqtu504v" path="res://scenes/ufo.tscn" id="6_6kwjn"]
+
+[sub_resource type="Curve2D" id="Curve2D_dt5f1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -68, -59, 0, 0, 0, 0, 1245, -64, 0, 0, 0, 0, 1245, 743, 0, 0, 0, 0, -75, 745, 0, 0, 0, 0, -68, -59)
+}
+point_count = 5
 
 [node name="CityCollection" type="Node2D"]
+script = ExtResource("1_1kxx5")
+mob_scene = ExtResource("6_6kwjn")
 
 [node name="City" parent="." instance=ExtResource("1_33nua")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.513233, 0.513233, 0.513233, 1)
+color = Color(0.168627, 0.168627, 0.168627, 0.976471)
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_6jpgw")]
 position = Vector2(641, 452)
@@ -25,12 +34,16 @@ limit_bottom = 648
 [node name="Dumpster" parent="." instance=ExtResource("3_juahx")]
 position = Vector2(627, 426)
 
-[node name="SingleLamppost" parent="." instance=ExtResource("4_s1pyb")]
-position = Vector2(611, 478)
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_dt5f1")
 
-[node name="SingleLamppost2" parent="." instance=ExtResource("4_s1pyb")]
-position = Vector2(611, 417)
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-68, -59)
+rotation = -0.00380805
+
+[node name="MobTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [connection signal="body_entered" from="Dumpster" to="MainCharacter" method="_on_dumpster_body_entered"]
 [connection signal="surrender_inventory" from="Dumpster" to="MainCharacter" method="_on_dumpster_surrender_inventory"]
-
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

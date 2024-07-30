@@ -93,6 +93,7 @@ script = ExtResource("1_sd4bt")
 texture = ExtResource("2_6ubto")
 hframes = 4
 vframes = 4
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

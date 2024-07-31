@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1pjni62xk1hf"]
+[gd_scene load_steps=13 format=3 uid="uid://b1pjni62xk1hf"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_sd4bt"]
 [ext_resource type="Texture2D" uid="uid://dgdjbdtj3uy16" path="res://chef-spritesheet.png" id="2_6ubto"]
 [ext_resource type="Texture2D" uid="uid://df1ml0p2dl4qg" path="res://assets/tilemap.png" id="3_t5rtp"]
+[ext_resource type="Script" path="res://scripts/CooldownVisual.gd" id="4_il13u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vnxgg"]
 radius = 4.0
@@ -88,6 +89,9 @@ _data = {
 radius = 4.0
 height = 15.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jwx58"]
+light_mode = 1
+
 [node name="MainCharacter" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
@@ -133,7 +137,23 @@ wait_time = 3.0
 unique_name_in_owner = true
 wait_time = 3.0
 
+[node name="CooldownVisual" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 0.475831, 0.426589, 1)
+z_index = 5
+material = SubResource("CanvasItemMaterial_jwx58")
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = -7.0
+max_value = 3.0
+show_percentage = false
+script = ExtResource("4_il13u")
+
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
 [connection signal="timeout" from="DisguiseDuration" to="." method="_on_disguise_duration_timeout"]
+[connection signal="timeout" from="DisguiseDuration" to="CooldownVisual" method="_on_disguise_duration_timeout"]
 [connection signal="timeout" from="DisguiseCooldown" to="." method="_on_disguise_cooldown_timeout"]
+[connection signal="timeout" from="DisguiseCooldown" to="CooldownVisual" method="_on_disguise_cooldown_timeout"]

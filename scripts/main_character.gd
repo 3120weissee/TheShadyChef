@@ -52,6 +52,7 @@ func disguise():
 		%DumpsterSprite.show()
 		$CharacterSprite.hide()
 		%DisguiseDuration.start()
+		%DurationVisual.show()
 	
 	isDisguised = !isDisguised
 	if detections > 0:

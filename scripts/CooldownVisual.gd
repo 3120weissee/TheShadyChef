@@ -8,7 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	value = (%DisguiseCooldown.time_left / 3) * 100
+	value = %DisguiseCooldown.time_left
 
 
 func _on_disguise_cooldown_timeout():

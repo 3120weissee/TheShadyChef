@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1pjni62xk1hf"]
+[gd_scene load_steps=13 format=3 uid="uid://b1pjni62xk1hf"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_sd4bt"]
 [ext_resource type="Texture2D" uid="uid://dgdjbdtj3uy16" path="res://chef-spritesheet.png" id="2_6ubto"]
@@ -89,6 +89,9 @@ _data = {
 radius = 4.0
 height = 15.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jwx58"]
+light_mode = 1
+
 [node name="MainCharacter" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
@@ -138,10 +141,13 @@ wait_time = 3.0
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0.475831, 0.426589, 1)
+z_index = 5
+material = SubResource("CanvasItemMaterial_jwx58")
 offset_left = -6.0
 offset_top = -11.0
 offset_right = 6.0
 offset_bottom = -7.0
+max_value = 3.0
 show_percentage = false
 script = ExtResource("4_il13u")
 

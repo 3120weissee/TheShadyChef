@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://3owk0j7kfot3"]
+[gd_scene load_steps=14 format=3 uid="uid://3owk0j7kfot3"]
 
 [ext_resource type="Script" path="res://scripts/city_collection.gd" id="1_1kxx5"]
 [ext_resource type="PackedScene" uid="uid://cto3m1yxoev5y" path="res://scenes/city.tscn" id="1_33nua"]
 [ext_resource type="PackedScene" uid="uid://b1pjni62xk1hf" path="res://scenes/main_character.tscn" id="2_6jpgw"]
-[ext_resource type="PackedScene" uid="uid://ddhnyxf8b5u4f" path="res://scenes/dumpster.tscn" id="3_juahx"]
+[ext_resource type="FontFile" uid="uid://cewb08mspubiq" path="res://assets/Courgette-Regular.ttf" id="6_4issa"]
 [ext_resource type="PackedScene" uid="uid://cvrpukqtu504v" path="res://scenes/ufo.tscn" id="6_6kwjn"]
-[ext_resource type="Script" path="res://scripts/SurvivingLabel.gd" id="6_arpal"]
 
 [sub_resource type="Curve2D" id="Curve2D_dt5f1"]
 _data = {
@@ -13,33 +12,78 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x2pce"]
-light_mode = 1
+[sub_resource type="Curve2D" id="Curve2D_4unw1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 197, 170, 0, 0, 0, 0, 964, 511, 0, 0, 0, 0, 950, 155, 0, 0, 0, 0, 200, 509, 0, 0, 0, 0, 961, 329, 0, 0, 0, 0, 204, 333, 0, 0, 0, 0, 571, 188, 0, 0, 0, 0, 581, 511, 0, 0, 0, 0, 198, 170)
+}
+point_count = 9
 
-[sub_resource type="LabelSettings" id="LabelSettings_1vqc0"]
-font_size = 24
+[sub_resource type="Animation" id="Animation_xlbpq"]
+resource_name = "opening_camera"
+length = 240.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 240),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tcxwu"]
+_data = {
+"opening_camera": SubResource("Animation_xlbpq")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucjd6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.3236e-06, 0.503802, 0.337878, 1)
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2v11"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(4.23551e-06, 0.706385, 0.480308, 1)
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gab8q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.3236e-06, 0.503802, 0.337878, 1)
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tosw5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(4.23551e-06, 0.706385, 0.480308, 1)
+expand_margin_bottom = 3.0
 
 [node name="CityCollection" type="Node2D"]
 script = ExtResource("1_1kxx5")
 mob_scene = ExtResource("6_6kwjn")
+mainCharacter = ExtResource("2_6jpgw")
 
 [node name="City" parent="." instance=ExtResource("1_33nua")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.168627, 0.168627, 0.168627, 0.976471)
-
-[node name="MainCharacter" parent="." instance=ExtResource("2_6jpgw")]
-position = Vector2(641, 452)
-
-[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
-zoom = Vector2(2, 2)
-limit_left = 0
-limit_top = 0
-limit_right = 1152
-limit_bottom = 648
-
-[node name="Dumpster" parent="." instance=ExtResource("3_juahx")]
-position = Vector2(627, 426)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_dt5f1")
@@ -51,19 +95,129 @@ rotation = -0.00380805
 [node name="MobTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = 2
+[node name="CameraPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4unw1")
 
-[node name="SurvivingLabel" type="Label" parent="HUD"]
-material = SubResource("CanvasItemMaterial_x2pce")
-offset_left = 535.0
-offset_top = 8.0
-offset_right = 615.0
-offset_bottom = 32.0
-text = "I'm a label"
-label_settings = SubResource("LabelSettings_1vqc0")
-script = ExtResource("6_arpal")
+[node name="PathFollow2D" type="PathFollow2D" parent="CameraPath"]
+position = Vector2(197, 170)
+rotation = 0.418345
 
-[connection signal="body_entered" from="Dumpster" to="MainCharacter" method="_on_dumpster_body_entered"]
-[connection signal="surrender_inventory" from="Dumpster" to="MainCharacter" method="_on_dumpster_surrender_inventory"]
+[node name="OpeningCamera" type="Camera2D" parent="CameraPath/PathFollow2D"]
+unique_name_in_owner = true
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+
+[node name="AnimateCamera" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_tcxwu")
+}
+
+[node name="StartMenu" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="MarginContainer" type="MarginContainer" parent="StartMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TheShadyChef" type="Label" parent="StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(1.3236e-06, 0.503802, 0.337878, 1)
+theme_override_fonts/font = ExtResource("6_4issa")
+theme_override_font_sizes/font_size = 100
+text = "The Shady Chef"
+
+[node name="Control2" type="Control" parent="StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartGame" type="Button" parent="StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ucjd6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k2v11")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k2v11")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ucjd6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ucjd6")
+text = "   Start Game   "
+
+[node name="Control3" type="Control" parent="StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Score"
+
+[node name="Score" type="Label" parent="GameOver/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 96
+text = "000"
+
+[node name="Control2" type="Control" parent="GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Continue" type="Button" parent="GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gab8q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tosw5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tosw5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_gab8q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gab8q")
+text = "   Continue   "
+
+[node name="Control3" type="Control" parent="GameOver/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="pressed" from="StartMenu/MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="GameOver/MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]

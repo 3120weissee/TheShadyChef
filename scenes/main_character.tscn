@@ -183,6 +183,14 @@ color = Color(0.800491, 0.800491, 0.800491, 1)
 energy = 0.3
 texture = ExtResource("5_jsugr")
 
+[node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+
 [connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
 [connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
 [connection signal="timeout" from="DisguiseDuration" to="." method="_on_disguise_duration_timeout"]

@@ -5,6 +5,12 @@ extends CharacterBody2D
 var detections = 0
 var isDisguised = false
 var isOnCooldown = false
+var elapsed_time = 0.0
+
+signal game_over
+
+func _ready():
+	%MainCamera.make_current()
 
 func get_input():
 	if Input.is_action_just_pressed("interact") && !isOnCooldown:
@@ -16,7 +22,9 @@ func get_input():
 		
 		velocity = input_direction * speed
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	if !isDisguised:
+		elapsed_time += delta
 	get_input()
 	move_and_slide()
 
@@ -60,7 +68,8 @@ func disguise():
 
 func isGameOver():
 	if detections > 0 && !isDisguised:
-		print("game over")
+		emit_signal("game_over", elapsed_time)
+		queue_free()
 
 
 func _on_disguise_duration_timeout():

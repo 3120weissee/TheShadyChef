@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://3owk0j7kfot3"]
+[gd_scene load_steps=15 format=3 uid="uid://3owk0j7kfot3"]
 
 [ext_resource type="Script" path="res://scripts/city_collection.gd" id="1_1kxx5"]
 [ext_resource type="PackedScene" uid="uid://cto3m1yxoev5y" path="res://scenes/city.tscn" id="1_33nua"]
 [ext_resource type="PackedScene" uid="uid://b1pjni62xk1hf" path="res://scenes/main_character.tscn" id="2_6jpgw"]
 [ext_resource type="FontFile" uid="uid://cewb08mspubiq" path="res://assets/Courgette-Regular.ttf" id="6_4issa"]
 [ext_resource type="PackedScene" uid="uid://cvrpukqtu504v" path="res://scenes/ufo.tscn" id="6_6kwjn"]
+[ext_resource type="AudioStream" uid="uid://df2m0jg63hxrq" path="res://assets/Vibing Over Venus.mp3" id="6_cumuy"]
 
 [sub_resource type="Curve2D" id="Curve2D_dt5f1"]
 _data = {
@@ -217,6 +218,10 @@ text = "   Continue   "
 [node name="Control3" type="Control" parent="GameOver/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_cumuy")
+autoplay = true
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="pressed" from="StartMenu/MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]

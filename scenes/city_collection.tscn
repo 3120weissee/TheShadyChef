@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3owk0j7kfot3"]
+[gd_scene load_steps=19 format=3 uid="uid://3owk0j7kfot3"]
 
 [ext_resource type="Script" path="res://scripts/city_collection.gd" id="1_1kxx5"]
 [ext_resource type="PackedScene" uid="uid://cto3m1yxoev5y" path="res://scenes/city.tscn" id="1_33nua"]
@@ -58,6 +58,13 @@ border_width_bottom = 2
 border_color = Color(4.23551e-06, 0.706385, 0.480308, 1)
 expand_margin_bottom = 2.0
 
+[sub_resource type="InputEventKey" id="InputEventKey_0v51h"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_anaio"]
+events = [SubResource("InputEventKey_0v51h")]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gab8q"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 2
@@ -76,6 +83,13 @@ border_width_bottom = 2
 border_color = Color(4.23551e-06, 0.706385, 0.480308, 1)
 expand_margin_bottom = 3.0
 
+[sub_resource type="InputEventKey" id="InputEventKey_0nmxm"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_ngibi"]
+events = [SubResource("InputEventKey_0nmxm")]
+
 [node name="CityCollection" type="Node2D"]
 script = ExtResource("1_1kxx5")
 mob_scene = ExtResource("6_6kwjn")
@@ -84,7 +98,7 @@ mainCharacter = ExtResource("2_6jpgw")
 [node name="City" parent="." instance=ExtResource("1_33nua")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.168627, 0.168627, 0.168627, 0.976471)
+color = Color(0.226707, 0.226707, 0.226707, 0.976471)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_dt5f1")
@@ -159,6 +173,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_k2v11")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_k2v11")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_ucjd6")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ucjd6")
+shortcut = SubResource("Shortcut_anaio")
 text = "   Start Game   "
 
 [node name="Control3" type="Control" parent="StartMenu/MarginContainer/VBoxContainer"]
@@ -213,6 +228,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tosw5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_tosw5")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_gab8q")
 theme_override_styles/focus = SubResource("StyleBoxFlat_gab8q")
+shortcut = SubResource("Shortcut_ngibi")
 text = "   Continue   "
 
 [node name="Control3" type="Control" parent="GameOver/MarginContainer/VBoxContainer"]

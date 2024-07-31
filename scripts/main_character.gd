@@ -56,6 +56,7 @@ func disguise():
 		%DumpsterSprite.hide()
 		$CharacterSprite.show()
 		%DisguiseDuration.stop()
+		%DurationVisual.hide()
 	else:
 		%DumpsterSprite.show()
 		$CharacterSprite.hide()
